@@ -11,10 +11,19 @@ public class User {
     public boolean isAdmin;
 
 
-    public User(String username, String password, String mail, boolean isAdmin) {
+    public User(String username, String password, String mail) {
         this.username = username;
         this.password = password;
         this.mail = mail;
+    }
+
+    public boolean isAdmin(){
+        return isAdmin();
+    }
+
+    public void setIsAdmin(boolean isAdmin){
         this.isAdmin = isAdmin;
     }
+
+
 }
