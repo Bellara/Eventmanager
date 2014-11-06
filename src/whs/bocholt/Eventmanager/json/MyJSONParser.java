@@ -78,8 +78,8 @@ public class MyJSONParser {
                     String lastName = "";
                     String userMail = "";
 
-                    String name = jsonReader.nextName();
-                    switch(name){
+                    String nextName = jsonReader.nextName();
+                    switch(nextName){
                         case "id":
                             userID = jsonReader.nextLong();
                             break;
@@ -103,8 +103,6 @@ public class MyJSONParser {
         } catch (IOException e) {
             System.err.println("Cannot open the stream of the url ");
         }
-
         return user;
     }
-
 }
