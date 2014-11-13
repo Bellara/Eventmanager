@@ -16,13 +16,7 @@ import whs.bocholt.Eventmanager.objects.User;
 /**
  * Created by mku on 06.11.14.
  */
-public class MyJSONParser {
-
-    private static final String JSON_RESULT = "result";
-    private static final String JSON_DATA = "data";
-
-    private static final String JSON_MESSAGE_STATUS_SUCCESS = "Succes";
-    private static final String JSON_MESSAGE_STATUS_ERROR = "Error";
+public class UserLoginJSONParser {
 
 
     /**
@@ -64,18 +58,18 @@ public class MyJSONParser {
 
                 String name = jsonReader.nextName();
                 //Read the JSON-Object within "result"
-                if(JSON_RESULT.equals(name)){
+                if(JSONConstants.JSON_RESULT.equals(name)){
                     String status = jsonReader.nextString();
-                    if(JSON_MESSAGE_STATUS_ERROR.equals(status)){
+                    if(JSONConstants.JSON_MESSAGE_STATUS_ERROR.equals(status)){
                         //Errorhandling
                         //Fehler dem User anzeigen
                     }
-                    else if(JSON_MESSAGE_STATUS_SUCCESS.equals(status)){
+                    else if(JSONConstants.JSON_MESSAGE_STATUS_SUCCESS.equals(status)){
                         System.out.println("JSON-Aufruf für das Login war korrekt");
                     }
                 }
                 //Read the JSON-Object within "data"
-                else if(JSON_DATA.equals(name)){
+                else if(JSONConstants.JSON_DATA.equals(name)){
                     Long userID = (long) 0;
                     String firstName = "";
                     String lastName = "";
