@@ -14,7 +14,7 @@ import java.net.URL;
 import whs.bocholt.Eventmanager.objects.User;
 
 /**
- * Created by Maren on 06.11.14.
+ * Created by mku on 06.11.14.
  */
 public class MyJSONParser {
 
@@ -69,6 +69,9 @@ public class MyJSONParser {
                     if(JSON_MESSAGE_STATUS_ERROR.equals(status)){
                         //Errorhandling
                         //Fehler dem User anzeigen
+                    }
+                    else if(JSON_MESSAGE_STATUS_SUCCESS.equals(status)){
+                        System.out.println("JSON-Aufruf für das Login war korrekt");
                     }
                 }
                 //Read the JSON-Object within "data"
