@@ -5,16 +5,25 @@ package whs.bocholt.Eventmanager.objects;
  */
 public class User {
 
+    public long userID;
     public String username;
     public String password;
     public String mail;
     public boolean isAdmin;
 
 
-    public User(String username, String password, String mail) {
+    public User(long userID,String username, String mail) {
+        this.userID = userID;
         this.username = username;
-        this.password = password;
         this.mail = mail;
+    }
+
+    public boolean checkPassword(String password){
+        return this.password.equals(password);
+    }
+
+    public void setPassword(String password){
+        this.password = password;
     }
 
     public boolean isAdmin(){

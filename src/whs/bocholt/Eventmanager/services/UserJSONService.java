@@ -1,9 +1,7 @@
-package whs.bocholt.Eventmanager.json;
+package whs.bocholt.Eventmanager.services;
 
 
 import android.util.JsonReader;
-
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,7 +14,7 @@ import whs.bocholt.Eventmanager.objects.User;
 /**
  * Created by mku on 06.11.14.
  */
-public class UserLoginJSONParser {
+public class UserJSONService {
 
 
     /**
@@ -91,7 +89,7 @@ public class UserLoginJSONParser {
                             break;
                     }
 
-                    user = new User(firstName + lastName, password, userMail);
+                    //user = new User(firstName + lastName, password, userMail);
                 }
             }
             jsonReader.endObject();

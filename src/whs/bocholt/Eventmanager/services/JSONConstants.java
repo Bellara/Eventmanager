@@ -1,4 +1,4 @@
-package whs.bocholt.Eventmanager.json;
+package whs.bocholt.Eventmanager.services;
 
 /**
  * Created by Maren on 13.11.14.
