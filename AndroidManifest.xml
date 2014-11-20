@@ -6,7 +6,8 @@
     <uses-sdk android:minSdkVersion="17"/>
     <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
         <activity android:name="MyActivity"
-                  android:label="@string/app_name">
+                  android:label="@string/list_name"
+                  android:theme="@style/Theme.Example">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -15,7 +16,8 @@
         <activity
             android:name="DisplayEventActivity"
             android:label="@string/app_name"
-            android:parentActivityName="MyActivity" >
+            android:parentActivityName="MyActivity"
+            android:theme="@style/Theme.Example">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MyActivity" />

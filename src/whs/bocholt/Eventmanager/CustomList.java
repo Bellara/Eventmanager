@@ -10,18 +10,20 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.Date;
+
+import whs.bocholt.Eventmanager.objects.User;
+
 public class CustomList extends ArrayAdapter<String>{
     private final Activity context;
     private final String[] eventname;
-    private final String[] admin;
-    private final String[] date;
+    private final User[] admin;
     public CustomList(Activity context,
-                      String[] eventname, String[] admin, String[] date) {
+                      String[] eventname, User[] admin) {
         super(context, R.layout.list_single, eventname);
         this.context = context;
         this.eventname = eventname;
         this.admin = admin;
-        this.date = date;
     }
     @Override
     public View getView(int position, View view, ViewGroup parent) {
@@ -29,12 +31,9 @@ public class CustomList extends ArrayAdapter<String>{
         View rowView= inflater.inflate(R.layout.list_single, null, true);
         TextView txtTitle = (TextView) rowView.findViewById(R.id.eventname);
         TextView myTextView = (TextView) rowView.findViewById(R.id.text);
-        TextView mySecondTextView = (TextView) rowView.findViewById(R.id.txt);
         TextView txtAdmin = (TextView) rowView.findViewById(R.id.admin);
-        TextView txtDate = (TextView) rowView.findViewById(R.id.date);
         txtTitle.setText(eventname[position]);
-        txtAdmin.setText(admin[position]);
-        txtDate.setText(date[position]);
+        txtAdmin.setText(admin[position].username);
         return rowView;
     }
 }

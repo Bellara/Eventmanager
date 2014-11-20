@@ -10,14 +10,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.content.Intent;
 
+import java.lang.reflect.Array;
+import java.util.Date;
 import java.util.List;
 
 import whs.bocholt.Eventmanager.objects.Event;
+import whs.bocholt.Eventmanager.objects.User;
+import whs.bocholt.Eventmanager.services.EventJsonService;
 
 public class MyActivity extends ListActivity {
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
-    //private EventJsonService eventJsonService;
     ListView list;
     /**
      * Called when the activity is first created.
@@ -28,14 +31,20 @@ public class MyActivity extends ListActivity {
         setContentView(R.layout.main);
 
         Long testID = (long) 123;
-        //List<Event> invations = eventJsonService.getAllInvitationsByUser(testID);
+        List<Event> invations = EventJsonService.getAllInvitationsFromUser(testID);
 
-        String[] event = {"Test1","Test2"};
-        String[] admin = {"Sebastian","Henning"};
-        String[] date = {"28.11.14","11.11.15"};
+        String[] name = new String[invations.size()];
+        User[] admin = new User[invations.size()];
+        Date[] date = new Date[invations.size()];
 
-        CustomList adapter = new
-                CustomList(MyActivity.this, event, admin, date);
+        for (int i = 0; i < invations.size(); i++) {
+            Event event = invations.get(i);
+            name[i]=event.name;
+            admin[i]=event.admin;
+        }
+
+        CustomList adapter = new CustomList(MyActivity.this, name, admin);
+
         list=getListView();
         list.setAdapter(adapter);
 
