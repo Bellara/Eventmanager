@@ -25,7 +25,6 @@ public class JsonService {
      * @param url
      * @return
      */
-
     public JSONObject readJSONObjectFromURL(URL url){
         try {
             InputStream inputStream = url.openStream();

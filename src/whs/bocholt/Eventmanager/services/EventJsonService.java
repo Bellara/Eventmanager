@@ -37,58 +37,7 @@ public class EventJsonService extends JsonService{
             JSONObject jsonObject = readJSONObjectFromURL(myURL);
                **/
 
-            //File test_invitations = new File("invitations");
-            //InputStream inputStream = new FileInputStream(test_invitations);
-
-            //BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            StringBuilder stringBuilder = new StringBuilder("{\n" +
-                    "    \"result\": {\n" +
-                    "        \"status\":\"success\",\n" +
-                    "        \"message\":\"\"\n" +
-                    "    },\n" +
-                    "\n" +
-                    "    \"data\": {\n" +
-                    "        \"invitations\": [\n" +
-                    "            {\n" +
-                    "                \"event\": {\n" +
-                    "                    \"eid\":\"123456\",\n" +
-                    "                    \"bezeichnung\":\"asdfasdf\",\n" +
-                    "                    \"ort\":\"sfasdf\",\n" +
-                    "                    \"zeit\":\"2014-15-11 20:00\",\n" +
-                    "                    \"admin\": {\n" +
-                    "                        \"id\":\"1234567\",\n" +
-                    "                        \"name\": \"Breuersbrock\",\n" +
-                    "                        \"vorname\": \"Henning\",\n" +
-                    "                        \"mail\": \"test@test.de\",\n" +
-                    "                    }\n" +
-                    "                }\n" +
-                    "            \"status\": \"0\" / \"1\" / \"2\"  (0=nicht entschieden, 1=komme, 2=komme nicht)\n" +
-                    "            },\n" +
-                    "            {\n" +
-                    "                \"event\": {\n" +
-                    "                    \"eid\":\"123456\",\n" +
-                    "                    \"bezeichnung\":\"asdfasdf\",\n" +
-                    "                    \"ort\":\"sfasdf\",\n" +
-                    "                    \"zeit\":\"2014-15-11 20:00\",\n" +
-                    "                    \"admin\": {\n" +
-                    "                        \"id\":\"1234567\",\n" +
-                    "                        \"name\": \"Breuersbrock\",\n" +
-                    "                        \"vorname\": \"Henning\",\n" +
-                    "                        \"mail\": \"test@test.de\",\n" +
-                    "                    }\n" +
-                    "                }\n" +
-                    "            \"status\": \"0\" / \"1\" / \"2\"  (0=nicht entschieden, 1=komme, 2=komme nicht)\n" +
-                    "            }\n" +
-                    "\n" +
-                    "        ]\n" +
-                    "    }\n" +
-                    "}");
-            //while(bufferedReader.readLine() != null){
-            //    stringBuilder.append(bufferedReader.readLine());
-            //}
-
-            JSONObject jsonObject = new JSONObject(stringBuilder.toString());
-
+            JSONObject jsonObject = new JSONObject(JSONTest.GET_ALL_INVITATIONS.toString());
 
             if(hasError(jsonObject.getJSONObject("result"))){
                 System.err.println("FEHER! Bei den JSON-Dateien für getAllInvitationsFromUser");

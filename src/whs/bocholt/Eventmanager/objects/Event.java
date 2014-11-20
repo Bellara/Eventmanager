@@ -32,7 +32,7 @@ public class Event {
 
     private void parseDate(String date) {
         try {
-            DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD hh:mm");
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-DD hh:mm");
             this.date = dateFormat.parse(date);
         } catch (ParseException e) {
             System.err.println("ParseException ");
