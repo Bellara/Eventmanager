@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import whs.bocholt.Eventmanager.objects.Event;
@@ -25,9 +26,14 @@ public class EventJsonService extends JsonService{
     public ArrayList<Event> events;
 
     public static final String URL_GET_INVITATIONS = "http://server/events/getInvitations?uid=";
+    public static final String URL_GET_DETAIL_EVENT_INFORMATION = "http://server/events/getById?id=";
 
 
-
+    /**
+     * Returns all Invitations a user have as a list.
+     * @param userID
+     * @return
+     */
     public ArrayList<Event> getAllInvitationsFromUser(long userID){
         events = new ArrayList<>();
         try {
@@ -69,5 +75,43 @@ public class EventJsonService extends JsonService{
         }
 
         return events;
+    }
+
+    /**
+     *  Returns detailInformation of an Event getting by the id.
+     * @param eventID
+     * @return
+     */
+    public Event getDetailInformatoinByEventID(Long eventID){
+
+        Event event = null;
+        /**
+        try {
+            URL myURL = new URL(URL_GET_DETAIL_EVENT_INFORMATION + eventID);
+            JSONObject jsonObject = readJSONObjectFromURL(myURL);
+        } catch (MalformedURLException e) {
+            System.err.println("Fehler beim Erstellen der URL " + URL_GET_DETAIL_EVENT_INFORMATION + eventID + "\n" + e);
+        }**/
+        try {
+            JSONObject jsonObject = new JSONObject(JSONTest.GET_DETAIL_EVENT_INFORMATION.toString());
+            if(hasError(jsonObject.getJSONObject("result"))){
+                return null;
+            }
+
+            //fill Event with JSON-Information
+            JSONObject dataObject = jsonObject.getJSONObject("data");
+            event = new Event(dataObject.getLong("eid"), dataObject.getString("bezeichnung"), "", dataObject.getString("zeit"), dataObject.getString("ort"));
+
+            //fill eventadmin
+            JSONObject adminObject = dataObject.getJSONObject("admin");
+            User user = new User(adminObject.getLong("id"), adminObject.getString("vorname") + adminObject.getString("name"),
+                    adminObject.getString("mail"));
+
+            event.setAdminUser(user);
+
+        } catch (JSONException e) {
+            System.err.println("Konnte das JSON-Objekt nicht erzeugen: " + JSONTest.GET_DETAIL_EVENT_INFORMATION + e);
+        }
+        return event;
     }
 }

@@ -48,4 +48,25 @@ public class JSONTest {
             "        ]\n" +
             "    }\n" +
             "}");
+
+    public static final StringBuilder GET_DETAIL_EVENT_INFORMATION = new StringBuilder(
+            "{\n" +
+            "    \"result\": {\n" +
+            "        \"status\":\"success\",\n" +
+            "        \"message\":\"\"\n" +
+            "    },\n" +
+            "\n" +
+            "    \"data\":  {\n" +
+            "        \"eid\":\"10001\",\n" +
+            "        \"bezeichnung\":\"Tolles Event\",\n" +
+            "        \"ort\":\"Toller Ort\",\n" +
+            "        \"zeit\":\"2014-15-11 20:00\",\n" +
+            "        \"admin\": {\n" +
+            "            \"id\":\"1001\",\n" +
+            "            \"name\": \"Breuersbrock\",\n" +
+            "            \"vorname\": \"Henning\",\n" +
+            "            \"mail\": \"h.breuersbrock@web.de\"\n" +
+            "        }\n" +
+            "    }\n" +
+            "}\n");
 }
