@@ -69,4 +69,15 @@ public class JSONTest {
             "        }\n" +
             "    }\n" +
             "}\n");
+
+    public static final StringBuilder SET_USER_STATUS_ON_EVENT = new StringBuilder(
+            "{\n" +
+            "    \"result\": {\n" +
+            "        \"status\":\"success\",\n" +
+            "        \"message\":\"\"\n" +
+            "    },\n" +
+            "\n" +
+            "    \"data\":  { }\n" +
+            "}"
+    );
 }

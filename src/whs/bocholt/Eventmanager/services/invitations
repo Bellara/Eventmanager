@@ -1,19 +1,8 @@
 {
     "result": {
-        "status":"success",
+        "status":"success"
         "message":""
     },
 
-    "data":  {
-        "eid":"123456",
-        "bezeichnung":"asdfasdf",
-        "ort":"sfasdf",
-        "zeit":"2014-15-11 20:00",
-        "admin": {
-            "id":"1234567",
-            "name": "Breuersbrock",
-            "vorname": "Henning",
-            "mail": "test@test.de",
-        }
-    }
+    "data":  { }
 }

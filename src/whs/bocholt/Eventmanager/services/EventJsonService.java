@@ -27,6 +27,7 @@ public class EventJsonService extends JsonService{
 
     public static final String URL_GET_INVITATIONS = "http://server/events/getInvitations?uid=";
     public static final String URL_GET_DETAIL_EVENT_INFORMATION = "http://server/events/getById?id=";
+    public static final String URL_SIGN_IN = "http://server/events/signin?eid=eventID&uid=userID&status=sid";
 
 
     /**
@@ -78,7 +79,8 @@ public class EventJsonService extends JsonService{
     }
 
     /**
-     *  Returns detailInformation of an Event getting by the id.
+     *  Searches for detailInformation of an Event. Returns the Event-Object and its new
+     *  information.
      * @param eventID
      * @return
      */
@@ -113,5 +115,36 @@ public class EventJsonService extends JsonService{
             System.err.println("Konnte das JSON-Objekt nicht erzeugen: " + JSONTest.GET_DETAIL_EVENT_INFORMATION + e);
         }
         return event;
+    }
+
+
+    /**
+     * Sets the status a user has to the event. Either he will agree to join the event,
+     * or he will decline. The different status can be look up in JSONConstants.java
+     *
+     * The method returns a true, if the entry in the DB was successfully. Or false, if it wasn't.
+     * @param eventID
+     * @param userID
+     * @param status
+     */
+    public boolean signInEvent(long eventID, long userID, int status){
+        String urlString = URL_SIGN_IN.replaceAll("eventID", String.valueOf(eventID)).replaceAll("userID", String.valueOf(userID)).replaceAll("sid", String.valueOf(status));
+
+        /**
+        try {
+            String urlString = URL_SIGN_IN.replaceAll("(eventI)", String.valueOf(eventID)).replaceAll("(userID)", String.valueOf(userID)).replaceAll("(status)", String.valueOf(status));
+            URL url = new URL(urlString);
+            JSONObject jsonObject = readJSONObjectFromURL(url);
+        } catch (MalformedURLException e) {
+            System.err.println(e);
+        }*/
+
+        try {
+            JSONObject jsonObject = new JSONObject(JSONTest.SET_USER_STATUS_ON_EVENT.toString());
+            return !hasError(jsonObject);
+        } catch (JSONException e) {
+            System.err.println(e);
+        }
+        return false;
     }
 }
