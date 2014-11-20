@@ -2,23 +2,23 @@ package whs.bocholt.Eventmanager;
 
 import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import java.util.List;
-
-import whs.bocholt.Eventmanager.objects.Event;
-import whs.bocholt.Eventmanager.services.EventJsonService;
+import android.content.Intent;
 
 import java.util.List;
 
 import whs.bocholt.Eventmanager.objects.Event;
 
 public class MyActivity extends ListActivity {
+    public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
     //private EventJsonService eventJsonService;
-    public ListView list;
+    ListView list;
     /**
      * Called when the activity is first created.
      */
@@ -27,29 +27,38 @@ public class MyActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        justATest();
-
-        //Long testID = (long) 123;
+        Long testID = (long) 123;
         //List<Event> invations = eventJsonService.getAllInvitationsByUser(testID);
 
-        //String[] event = {"Test1","Test2"};
-        //String[] admin = {"Sebastian","Henning"};
-        //String[] date = {"28.11.14","11.11.15"};
+        String[] event = {"Test1","Test2"};
+        String[] admin = {"Sebastian","Henning"};
+        String[] date = {"28.11.14","11.11.15"};
 
-//        CustomLtAdapter(adapter);
+        CustomList adapter = new
+                CustomList(MyActivity.this, event, admin, date);
+        list=getListView();
+        list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MyActivity.this, DisplayEventActivity.class);
+                String event = "test";
+                intent.putExtra(EXTRA_MESSAGE, event);
+                startActivity(intent);
+            }
+        });
 
         //String[] events ={"Test1", "Test2", "Test 3", "Test4","Test5","Test6"};
-        //ArrayAdapter<Strist adapter = new
-//                CustomList(MyActivity.this, event, admin, date);
-//        list=getListView();
-//        list.seing> adapter= new ArrayAdapter<String>(getListView().getContext(), R.layout.list_single, events);
+        //ArrayAdapter<String> adapter= new ArrayAdapter<String>(getListView().getContext(), R.layout.list_single, events);
         //getListView().setAdapter(adapter);
     }
 
-    private void justATest(){
-        EventJsonService eventJsonService = new EventJsonService();
-        long userID = 1000;
-        Event event = eventJsonService.getDetailInformatoinByEventID(userID);
-        System.out.println("Event " + event.eventID);
+    public void openEvent(View view){
+        Intent intent = new Intent(this, DisplayEventActivity.class);
+        String event = "test";
+        intent.putExtra(EXTRA_MESSAGE, event);
+        startActivity(intent);
     }
 }
