@@ -1,103 +1,47 @@
 package whs.bocholt.Eventmanager.services;
 
-
-import android.util.JsonReader;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import whs.bocholt.Eventmanager.objects.User;
 
 /**
- * Created by mku on 06.11.14.
+ * Created by Maren on 20.11.14.
  */
-public class UserJSONService {
+public class UserJsonService extends JsonService{
 
+    private static final String LOGIN_USER = "http://server/user/login?mail=mString&pw=password";
 
     /**
-     * Gets the login-json-object
-     *
-     * {
-         "result": {
-             "status":"success",
-             "message":""
-         },
-
-         "data":  {
-             "id":"1234567",
-             "name": "Breuersbrock",
-             "vorname": "Henning",
-             "mail": "test@test.de"
-         }
-     }
-     *
+     * Logs the User in with the given mail and password. Moreover this method checks whether
+     * the user already exists in the Database. In the end he returns the user-object.
      * @param mail
      * @param password
+     * @return
      */
-    public User userLogin(String mail, String password){
-
+    public static User loginUser(String mail, String password){
+        String urLStirng = LOGIN_USER.replaceAll("mString", mail).replaceAll("password", password);
         User user = null;
 
+        /**
+         try {
+            String urLStirng = LOGIN_USER.replaceAll("mString", mail).replaceAll("password", password);
+            URL url = new URL(urlString);
+            JSONObject jsonObject = readJSONObjectFromURL(url);
+         } catch (MalformedURLException e) {
+            System.err.println(e);
+         }*/
+
         try {
-            //URL to get the JSON-Object
-            URL url = new URL("http://server/user/login?mail=" + mail + "&pw=" + password);
-
-            //Open inputstream
-            InputStream inputStream = url.openStream();
-
-            //init JSONReader
-            JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
-
-            jsonReader.beginObject();
-            while(jsonReader.hasNext()){
-
-                String name = jsonReader.nextName();
-                //Read the JSON-Object within "result"
-                if(JSONConstants.JSON_RESULT.equals(name)){
-                    String status = jsonReader.nextString();
-                    if(JSONConstants.JSON_MESSAGE_STATUS_ERROR.equals(status)){
-                        //Errorhandling
-                        //Fehler dem User anzeigen
-                    }
-                    else if(JSONConstants.JSON_MESSAGE_STATUS_SUCCESS.equals(status)){
-                        System.out.println("JSON-Aufruf für das Login war korrekt");
-                    }
-                }
-                //Read the JSON-Object within "data"
-                else if(JSONConstants.JSON_DATA.equals(name)){
-                    Long userID = (long) 0;
-                    String firstName = "";
-                    String lastName = "";
-                    String userMail = "";
-
-                    String nextName = jsonReader.nextName();
-                    switch(nextName){
-                        case "id":
-                            userID = jsonReader.nextLong();
-                            break;
-                        case "firstname":
-                            firstName = jsonReader.nextString();
-                            break;
-                        case "lastname":
-                            lastName = jsonReader.nextString();
-                            break;
-                        case "mail":
-                            userMail = jsonReader.nextString();
-                            break;
-                    }
-
-                    //user = new User(firstName + lastName, password, userMail);
-                }
+            JSONObject jsonObject = new JSONObject(JSONTest.LOGIN_USER.toString());
+            if(!hasError(jsonObject)){
+                JSONObject dataObject = jsonObject.getJSONObject("data");
+                user = new User(dataObject.getLong("id"), dataObject.getString("vorname") + " " + dataObject.getString("name"), dataObject.getString("mail"));
             }
-            jsonReader.endObject();
-        } catch (MalformedURLException e) {
-            System.err.println("Cannot open URL");
-        } catch (IOException e) {
-            System.err.println("Cannot open the stream of the url ");
+        } catch (JSONException e) {
+            System.err.println(e);
         }
         return user;
     }
+
 }

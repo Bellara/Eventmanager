@@ -1,8 +1,13 @@
 {
     "result": {
-        "status":"success"
+        "status":"success",
         "message":""
     },
 
-    "data":  { }
+    "data":  {
+        "id":"1234567",
+        "name": "Breuersbrock",
+        "vorname": "Henning",
+        "mail": "test@test.de"
+    }
 }

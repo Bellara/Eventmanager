@@ -66,7 +66,7 @@ public class JsonService {
      * @param resultJsonObject
      * @return
      */
-    public boolean hasError(JSONObject resultJsonObject){
+    public static boolean hasError(JSONObject resultJsonObject){
         try {
             return resultJsonObject.getString(JSON_STATUS).equals(JSONConstants.JSON_MESSAGE_STATUS_ERROR);
         } catch (JSONException e) {

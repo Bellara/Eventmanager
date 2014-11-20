@@ -17,29 +17,29 @@ public class JSONTest {
             "            {\n" +
             "                \"event\": {\n" +
             "                    \"eid\":\"123456\",\n" +
-            "                    \"bezeichnung\":\"asdfasdf\",\n" +
-            "                    \"ort\":\"sfasdf\",\n" +
+            "                    \"bezeichnung\":\"Tolles Event 1\",\n" +
+            "                    \"ort\":\"Toller Ort\",\n" +
             "                    \"zeit\":\"2014-15-11 20:00\",\n" +
             "                    \"admin\": {\n" +
             "                        \"id\":\"1234567\",\n" +
             "                        \"name\": \"Breuersbrock\",\n" +
             "                        \"vorname\": \"Henning\",\n" +
-            "                        \"mail\": \"test@test.de\"\n" +
+            "                        \"mail\": \"h.breuersbrock@web.de\"\n" +
             "                    }\n" +
             "                },\n" +
-            "            \"status\":\"1\"\n" +
+            "            \"status\":\"0\"\n" +
             "            },\n" +
             "            {\n" +
             "                \"event\": {\n" +
             "                    \"eid\":\"456789\",\n" +
-            "                    \"bezeichnung\":\"asdfasdf\",\n" +
-            "                    \"ort\":\"sfasdf\",\n" +
+            "                    \"bezeichnung\":\"Tolles Event 2\",\n" +
+            "                    \"ort\":\"Super Geiler Ort\",\n" +
             "                    \"zeit\":\"2014-15-11 20:00\",\n" +
             "                    \"admin\": {\n" +
             "                        \"id\":\"1234567\",\n" +
             "                        \"name\": \"Breuersbrock\",\n" +
             "                        \"vorname\": \"Henning\",\n" +
-            "                        \"mail\": \"test@test.de\"\n" +
+            "                        \"mail\": \"h.breuersbrock@web.de\"\n" +
             "                    }\n" +
             "                },\n" +
             "            \"status\": \"0\"\n" +
@@ -79,5 +79,21 @@ public class JSONTest {
             "\n" +
             "    \"data\":  { }\n" +
             "}"
+    );
+
+    public static final StringBuilder LOGIN_USER = new StringBuilder(
+       "{\n" +
+       "    \"result\": {\n" +
+       "        \"status\":\"success\",\n" +
+       "        \"message\":\"\"\n" +
+       "    },\n" +
+       "\n" +
+       "    \"data\":  {\n" +
+       "        \"id\":\"1234567\",\n" +
+       "        \"name\": \"Breuersbrock\",\n" +
+       "        \"vorname\": \"Henning\",\n" +
+       "        \"mail\": \"test@test.de\"\n" +
+       "    }\n" +
+       "}"
     );
 }

@@ -23,7 +23,7 @@ import whs.bocholt.Eventmanager.objects.User;
  */
 public class EventJsonService extends JsonService{
 
-    public ArrayList<Event> events;
+    public static ArrayList<Event> events;
 
     public static final String URL_GET_INVITATIONS = "http://server/events/getInvitations?uid=";
     public static final String URL_GET_DETAIL_EVENT_INFORMATION = "http://server/events/getById?id=";
@@ -35,7 +35,7 @@ public class EventJsonService extends JsonService{
      * @param userID
      * @return
      */
-    public ArrayList<Event> getAllInvitationsFromUser(long userID){
+    public static ArrayList<Event> getAllInvitationsFromUser(long userID){
         events = new ArrayList<>();
         try {
             /**
@@ -84,7 +84,7 @@ public class EventJsonService extends JsonService{
      * @param eventID
      * @return
      */
-    public Event getDetailInformatoinByEventID(Long eventID){
+    public static Event getDetailInformatoinByEventID(Long eventID){
 
         Event event = null;
         /**
@@ -120,14 +120,15 @@ public class EventJsonService extends JsonService{
 
     /**
      * Sets the status a user has to the event. Either he will agree to join the event,
-     * or he will decline. The different status can be look up in JSONConstants.java
+     * or he will decline. The different status can be look up in InventationStatus .java
      *
      * The method returns a true, if the entry in the DB was successfully. Or false, if it wasn't.
      * @param eventID
      * @param userID
      * @param status
+     * @return success
      */
-    public boolean signInEvent(long eventID, long userID, int status){
+    public static boolean signInEvent(long eventID, long userID, int status){
         String urlString = URL_SIGN_IN.replaceAll("eventID", String.valueOf(eventID)).replaceAll("userID", String.valueOf(userID)).replaceAll("sid", String.valueOf(status));
 
         /**
