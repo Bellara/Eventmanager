@@ -97,7 +97,7 @@ public class EventJsonService extends JsonService{
 
             //fill Event with JSON-Information
             JSONObject dataObject = jsonObject.getJSONObject("data");
-            event = new Event(dataObject.getLong("eid"), dataObject.getString("bezeichnung"), "", dataObject.getString("zeit"), dataObject.getString("ort"));
+            event = new Event(dataObject.getLong("eid"), dataObject.getString("bezeichnung"), "Dies ist eine ganz super tolle Beschreibung die nie nie nie nie nie nie niemals aufhört!", dataObject.getString("zeit"), dataObject.getString("ort"));
 
             //fill eventadmin
             JSONObject adminObject = dataObject.getJSONObject("admin");
