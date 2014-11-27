@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.Date;
 
 import whs.bocholt.Eventmanager.objects.User;
 

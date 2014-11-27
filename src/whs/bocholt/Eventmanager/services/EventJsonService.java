@@ -4,18 +4,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
 import whs.bocholt.Eventmanager.objects.Event;
+import whs.bocholt.Eventmanager.objects.Invitation;
+import whs.bocholt.Eventmanager.objects.InvitationsStatus;
 import whs.bocholt.Eventmanager.objects.User;
 
 /**
@@ -23,11 +16,11 @@ import whs.bocholt.Eventmanager.objects.User;
  */
 public class EventJsonService extends JsonService{
 
-    public static ArrayList<Event> events;
+    public static ArrayList<Invitation> invitations;
 
-    public static final String URL_GET_INVITATIONS = "http://server/events/getInvitations?uid=";
-    public static final String URL_GET_DETAIL_EVENT_INFORMATION = "http://server/events/getById?id=";
-    public static final String URL_SIGN_IN = "http://server/events/signin?eid=eventID&uid=userID&status=sid";
+    public static final String URL_GET_INVITATIONS = "http://server/invitations/getInvitations?uid=";
+    public static final String URL_GET_DETAIL_EVENT_INFORMATION = "http://server/invitations/getById?id=";
+    public static final String URL_SIGN_IN = "http://server/invitations/signin?eid=eventID&uid=userID&status=sid";
 
 
     /**
@@ -35,8 +28,8 @@ public class EventJsonService extends JsonService{
      * @param userID
      * @return
      */
-    public static ArrayList<Event> getAllInvitationsFromUser(long userID){
-        events = new ArrayList<>();
+    public static ArrayList<Invitation> getAllInvitationsFromUser(long userID){
+        invitations = new ArrayList<Invitation>();
         try {
             /**
             URL myURL = new URL(URL_GET_INVITATIONS + userID);
@@ -52,10 +45,10 @@ public class EventJsonService extends JsonService{
             }
 
             JSONObject dataObject = jsonObject.getJSONObject("data");
-            JSONArray invitations = dataObject.getJSONArray("invitations");
+            JSONArray invitationsJSONS = dataObject.getJSONArray("invitations");
 
-            for(int i = 0; i < invitations.length(); i++){
-                JSONObject invitation = invitations.getJSONObject(i);
+            for(int i = 0; i < invitationsJSONS.length(); i++){
+                JSONObject invitation = invitationsJSONS.getJSONObject(i);
                 JSONObject eventJson = invitation.getJSONObject("event");
 
                 //getEvent
@@ -68,14 +61,16 @@ public class EventJsonService extends JsonService{
                                                             adminObject.getString("mail"));
 
                 event.setAdminUser(user);
-                events.add(event);
+
+                Invitation invitationObject = new Invitation(event, invitation.getInt("status"));
+                invitations.add(invitationObject);
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        return events;
+        return invitations;
     }
 
     /**

@@ -15,8 +15,10 @@ import java.util.Date;
 import java.util.List;
 
 import whs.bocholt.Eventmanager.objects.Event;
+import whs.bocholt.Eventmanager.objects.Invitation;
 import whs.bocholt.Eventmanager.objects.User;
 import whs.bocholt.Eventmanager.services.EventJsonService;
+import whs.bocholt.Eventmanager.services.UserJsonService;
 
 public class MyActivity extends ListActivity {
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
@@ -30,15 +32,18 @@ public class MyActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        //justATest();
+
         Long testID = (long) 123;
-        List<Event> invations = EventJsonService.getAllInvitationsFromUser(testID);
+        List<Invitation> invations = EventJsonService.getAllInvitationsFromUser(testID);
 
         String[] name = new String[invations.size()];
         User[] admin = new User[invations.size()];
         Date[] date = new Date[invations.size()];
 
         for (int i = 0; i < invations.size(); i++) {
-            Event event = invations.get(i);
+            Invitation invitation = invations.get(i);
+            Event event = invitation.event;
             name[i]=event.name;
             admin[i]=event.admin;
         }
@@ -58,10 +63,6 @@ public class MyActivity extends ListActivity {
                 startActivity(intent);
             }
         });
-
-        //String[] events ={"Test1", "Test2", "Test 3", "Test4","Test5","Test6"};
-        //ArrayAdapter<String> adapter= new ArrayAdapter<String>(getListView().getContext(), R.layout.list_single, events);
-        //getListView().setAdapter(adapter);
     }
 
     public void openEvent(View view){
@@ -69,5 +70,12 @@ public class MyActivity extends ListActivity {
         String event = "test";
         intent.putExtra(EXTRA_MESSAGE, event);
         startActivity(intent);
+    }
+
+
+    private void justATest(){
+        String userMail = "m.kuehle@web.de";
+        String password="DiesIstEinDoofesPasswort";
+        User myUser = UserJsonService.loginUser(userMail, password);
     }
 }
