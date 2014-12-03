@@ -35,7 +35,7 @@ public class MyActivity extends ListActivity {
         //justATest();
 
         Long testID = (long) 123;
-        List<Invitation> invations = EventJsonService.getAllInvitationsFromUser(testID);
+        final List<Invitation> invations = EventJsonService.getAllInvitationsFromUser(testID);
 
         String[] name = new String[invations.size()];
         User[] admin = new User[invations.size()];
@@ -58,8 +58,8 @@ public class MyActivity extends ListActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(MyActivity.this, DisplayEventActivity.class);
-                String event = "test";
-                intent.putExtra(EXTRA_MESSAGE, event);
+                Long event = invations.get(position).event.eventID;
+                intent.putExtra("EventID", event);
                 startActivity(intent);
             }
         });
