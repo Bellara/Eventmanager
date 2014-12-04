@@ -17,7 +17,9 @@ import android.content.Intent;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 import whs.bocholt.Eventmanager.objects.Event;
 import whs.bocholt.Eventmanager.services.EventJsonService;
@@ -67,12 +69,18 @@ public class DisplayEventActivity extends Activity{
         //linLayout.addView(name, lpView);
         //linLayout.addView(veranstalter, lpView);
 
+        TextView txtName = (TextView)findViewById(R.id.name);
         TextView txtHost = (TextView) findViewById(R.id.host);
+        TextView txtOrt = (TextView) findViewById(R.id.ort);
         TextView txtDescription = (TextView) findViewById(R.id.description);
         TextView txtDate = (TextView) findViewById(R.id.date);
+        txtName.setText(event.name);
         txtHost.setText(event.admin.username);
+        txtOrt.setText(event.location);
+        String format = "yyy-MM-dd HH:mm";
+        SimpleDateFormat simpleDate = new SimpleDateFormat(format, Locale.GERMAN);
+        txtDate.setText(simpleDate.format(event.date));
         txtDescription.setText(event.description);
-        txtDate.setText(eventId.toString());
 
     }
 }
