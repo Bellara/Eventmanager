@@ -1,9 +1,16 @@
 package whs.bocholt.Eventmanager.services;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.StatusLine;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -68,7 +75,7 @@ public class JsonService {
      */
     public static boolean hasError(JSONObject resultJsonObject){
         try {
-            return resultJsonObject.getString(JSON_STATUS).equals(JSONConstants.JSON_MESSAGE_STATUS_ERROR);
+            return resultJsonObject.getJSONObject("result").getString(JSON_STATUS).equals(JSONConstants.JSON_MESSAGE_STATUS_ERROR);
         } catch (JSONException e) {
             System.err.println("Cannot find " + JSON_STATUS + " in the JSON-OBject: " + resultJsonObject.toString());
         }

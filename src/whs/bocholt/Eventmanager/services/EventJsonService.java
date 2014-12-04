@@ -57,7 +57,7 @@ public class EventJsonService extends JsonService{
 
                 //getAdminuser
                 JSONObject adminObject = eventJson.getJSONObject("admin");
-                User user = new User(adminObject.getLong("id"), adminObject.getString("vorname") + adminObject.getString("name"),
+                User user = new User(adminObject.getString("id"), adminObject.getString("vorname") + adminObject.getString("name"),
                                                             adminObject.getString("mail"));
 
                 event.setAdminUser(user);
@@ -101,7 +101,7 @@ public class EventJsonService extends JsonService{
 
             //fill eventadmin
             JSONObject adminObject = dataObject.getJSONObject("admin");
-            User user = new User(adminObject.getLong("id"), adminObject.getString("vorname") + adminObject.getString("name"),
+            User user = new User(adminObject.getString("id"), adminObject.getString("vorname") + adminObject.getString("name"),
                     adminObject.getString("mail"));
 
             event.setAdminUser(user);
@@ -123,7 +123,7 @@ public class EventJsonService extends JsonService{
      * @param status
      * @return success
      */
-    public static boolean signInEvent(long eventID, long userID, int status){
+    public boolean signInEvent(long eventID, long userID, int status){
         String urlString = URL_SIGN_IN.replaceAll("eventID", String.valueOf(eventID)).replaceAll("userID", String.valueOf(userID)).replaceAll("sid", String.valueOf(status));
 
         /**

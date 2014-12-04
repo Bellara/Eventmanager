@@ -5,6 +5,8 @@ package whs.bocholt.Eventmanager.services;
  */
 public class JSONConstants {
 
+    public static final String URL_USER_LOGIN = "http://eventmanager.pythonanywhere.com/user/login?mail=mString&pw=password";
+
     public static final String JSON_RESULT = "result";
     public static final String JSON_DATA = "data";
 

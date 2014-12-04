@@ -11,7 +11,7 @@ import java.util.Date;
 public class Event {
 
     public User admin;
-    public long adminID;
+    public String adminID;
 
     public long eventID;
 

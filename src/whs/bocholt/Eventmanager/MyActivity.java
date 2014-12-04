@@ -1,16 +1,12 @@
 package whs.bocholt.Eventmanager;
 
-import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.content.Intent;
 
-import java.lang.reflect.Array;
 import java.util.Date;
 import java.util.List;
 
@@ -18,12 +14,15 @@ import whs.bocholt.Eventmanager.objects.Event;
 import whs.bocholt.Eventmanager.objects.Invitation;
 import whs.bocholt.Eventmanager.objects.User;
 import whs.bocholt.Eventmanager.services.EventJsonService;
-import whs.bocholt.Eventmanager.services.UserJsonService;
 
 public class MyActivity extends ListActivity {
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
     ListView list;
+
+    public User user;
+
+
     /**
      * Called when the activity is first created.
      */
@@ -70,12 +69,5 @@ public class MyActivity extends ListActivity {
         String event = "test";
         intent.putExtra(EXTRA_MESSAGE, event);
         startActivity(intent);
-    }
-
-
-    private void justATest(){
-        String userMail = "m.kuehle@web.de";
-        String password="DiesIstEinDoofesPasswort";
-        User myUser = UserJsonService.loginUser(userMail, password);
     }
 }
