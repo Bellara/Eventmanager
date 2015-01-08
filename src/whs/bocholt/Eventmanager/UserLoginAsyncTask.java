@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import whs.bocholt.Eventmanager.activity.ParentActivity;
 import whs.bocholt.Eventmanager.objects.User;
 import whs.bocholt.Eventmanager.services.JSONConstants;
 import whs.bocholt.Eventmanager.services.JsonService;
@@ -22,7 +23,7 @@ import whs.bocholt.Eventmanager.services.JsonService;
 /**
  * Created by Maren on 27.11.14.
  */
-public class UserLoginAsyncTask extends Activity {
+public class UserLoginAsyncTask extends ParentActivity {
 
     private String user_email;
     private String user_password;
@@ -62,12 +63,9 @@ public class UserLoginAsyncTask extends Activity {
         });
     }
 
-    public void showErrorToast(String errorMessage){
-        Toast.makeText(this, errorMessage, Toast.LENGTH_LONG);
-    }
 
     public void openListView(User user){
-        Intent intent = new Intent(this, MyActivity.class);
+        Intent intent = new Intent(this, EventListViewActivity.class);
         intent.putExtra("user", user.userID);
         startActivity(intent);
     }
@@ -88,13 +86,15 @@ public class UserLoginAsyncTask extends Activity {
             try {
                 url = new URL(params[0]);
                 JSONObject jsonObject = jsonService.readJSONObjectFromURL(url);
+
                 if (!jsonService.hasError(jsonObject)) {
                     JSONObject dataObject = jsonObject.getJSONObject("data");
                     user = new User(dataObject.getString("id"), dataObject.getString("vorname") + " " + dataObject.getString("name"), dataObject.getString("mail"));
-                } else {
-                    String errorMessage = jsonService.getErrorMessage(jsonObject);
-                    Toast.makeText(null, errorMessage, Toast.LENGTH_LONG).show();
+                }
 
+                else {
+                    String errorMessage = jsonService.getErrorMessage(jsonObject);
+                    showErrorToast(errorMessage);
                     System.err.println("There was an error during login in with: " + url.toString() + "\n" +
                                     jsonService.getErrorMessage(jsonObject)
                     );

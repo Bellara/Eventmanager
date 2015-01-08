@@ -1,9 +1,11 @@
 package whs.bocholt.Eventmanager.objects;
 
+import java.io.Serializable;
+
 /**
  * Created by Maren on 06.11.14.
  */
-public class User {
+public class User implements Serializable{
 
     public String userID;
     public String username;

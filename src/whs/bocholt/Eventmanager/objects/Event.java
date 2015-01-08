@@ -13,17 +13,16 @@ public class Event {
     public User admin;
     public String adminID;
 
-    public long eventID;
+    public String eventID;
 
     public String name;
     public String description;
     public Date date;
     public String location;
 
-    public Event(long eventID, String name, String description, String date, String location) {
+    public Event(String eventID, String name, String date, String location) {
         this.eventID = eventID;
         this.name = name;
-        this.description = description;
 
         parseDate(date);
 

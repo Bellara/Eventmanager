@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MyActivity"
+        <activity android:name=".EventListViewActivity"
                   android:label="@string/list_name"
                   android:theme="@style/Theme.Example">
         </activity>
@@ -24,7 +24,7 @@
         <activity
             android:name="DisplayEventActivity"
             android:label="@string/app_name"
-            android:parentActivityName="MyActivity"
+            android:parentActivityName=".EventListViewActivity"
             android:theme="@style/Theme.Example">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

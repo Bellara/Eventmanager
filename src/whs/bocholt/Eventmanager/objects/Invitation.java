@@ -1,9 +1,11 @@
 package whs.bocholt.Eventmanager.objects;
 
+import java.io.Serializable;
+
 /**
  * Created by Maren on 06.11.14.
  */
-public class Invitation {
+public class Invitation implements Serializable{
 
     public Event event;
     public int status;
@@ -13,7 +15,7 @@ public class Invitation {
         this.status = status;
     }
 
-    public void setSTatus(int status){
+    public void setStatus(int status){
         this.status = status;
     }
 }
