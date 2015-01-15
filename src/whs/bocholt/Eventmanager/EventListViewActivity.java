@@ -177,7 +177,7 @@ public class EventListViewActivity extends ListActivity {
                     JSONObject eventObject = invitationObject.getJSONObject("event");
                     JSONObject userObject = eventObject.getJSONObject("admin");
 
-                    User admin = new User(userObject.getString("id"), userObject.getString("vorname") + userObject.getString("nachname"), userObject.getString("mail"));
+                    User admin = new User(userObject.getString("id"), userObject.getString("vorname") + userObject.getString("name"), userObject.getString("mail"));
 
                     Event event = new Event(eventObject.getString("eid"), eventObject.getString("bezeichnung"),eventObject.getString("zeit"), eventObject.getString("ort"));
                     event.setAdminUser(admin);

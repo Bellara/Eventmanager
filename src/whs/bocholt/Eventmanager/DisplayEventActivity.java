@@ -29,6 +29,7 @@ import java.util.Locale;
 
 import whs.bocholt.Eventmanager.activity.ParentActivity;
 import whs.bocholt.Eventmanager.objects.Event;
+import whs.bocholt.Eventmanager.objects.User;
 import whs.bocholt.Eventmanager.services.JSONConstants;
 import whs.bocholt.Eventmanager.services.JsonService;
 
@@ -87,9 +88,11 @@ public class DisplayEventActivity extends ParentActivity{
                 if (!jsonService.hasError(jsonObject)) {
                     JSONObject dataObject = jsonObject.getJSONObject("data");
 
-                    event = new Event(dataObject.getString("eid"), dataObject.getString("descriptionn"), dataObject.getString("datum"), dataObject.getString("ort"));
+                    event = new Event(dataObject.getString("eid"), dataObject.getString("bezeichnung"), dataObject.getString("zeit"), dataObject.getString("ort"));
 
-                    showEventDetailInformation(event);
+                    JSONObject adminObject = dataObject.getJSONObject("admin");
+                    User eventAdmin = new User(adminObject.getString("id"), adminObject.getString("vorname") + " "   + adminObject.getString("name"), adminObject.getString("mail"));
+                    event.setAdminUser(eventAdmin);
                 }
 
                 else {
@@ -106,6 +109,15 @@ public class DisplayEventActivity extends ParentActivity{
             }
             return null;
         }
+
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            showEventDetailInformation(event);
+        }
+
+
     }
 
 
