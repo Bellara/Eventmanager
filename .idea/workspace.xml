@@ -23,7 +23,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="177f127a-c11b-4f0e-8c40-45d20da2c0e0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/new_event.xml" afterPath="$PROJECT_DIR$/res/layout/new_event.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Eventmanager.iws" />
@@ -738,7 +737,11 @@
       <created>1421330917176</created>
       <updated>1421330917177</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Datumsformat Hinweis">
+      <created>1421338761391</created>
+      <updated>1421338761391</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -829,7 +832,8 @@
     <MESSAGE value="Plus Button hinzugefügt (noch ohne Funktion)&#10;Ansicht für neues Event hinzugefügt&#10;Event-Detailansicht angepasst (Senden Button noch ohne Funktion)" />
     <MESSAGE value="Plus Funktion" />
     <MESSAGE value="Beschreibung entfernt.&#10;Neues Event kann erstellt werden (wird noch nicht geschickt).&#10;Tabellen Layout und Eventseiten Layout angepasst." />
-    <option name="LAST_COMMIT_MESSAGE" value="Beschreibung entfernt.&#10;Neues Event kann erstellt werden (wird noch nicht geschickt).&#10;Tabellen Layout und Eventseiten Layout angepasst." />
+    <MESSAGE value="Datumsformat Hinweis" />
+    <option name="LAST_COMMIT_MESSAGE" value="Datumsformat Hinweis" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
