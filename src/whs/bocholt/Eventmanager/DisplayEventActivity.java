@@ -57,7 +57,6 @@ public class DisplayEventActivity extends ParentActivity{
         TextView txtName = (TextView)findViewById(R.id.name);
         TextView txtHost = (TextView) findViewById(R.id.host);
         TextView txtOrt = (TextView) findViewById(R.id.ort);
-        TextView txtDescription = (TextView) findViewById(R.id.description);
         TextView txtDate = (TextView) findViewById(R.id.date);
         txtName.setText(event.name);
         txtHost.setText(event.admin.username);
@@ -65,7 +64,6 @@ public class DisplayEventActivity extends ParentActivity{
         String format = "yyy-MM-dd HH:mm";
         SimpleDateFormat simpleDate = new SimpleDateFormat(format, Locale.GERMAN);
         txtDate.setText(simpleDate.format(event.date));
-        txtDescription.setText(event.description);
     }
 
     class LoadEventService extends AsyncTask<String, Void, Void>{
