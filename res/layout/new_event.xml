@@ -41,7 +41,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:ems="10"
         android:id="@+id/timeTextField"
         android:layout_column="5" />
         </TableRow>
@@ -64,7 +63,13 @@
         android:layout_column="5" />
         </TableRow>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text=" Datumsformat: JJJJ-MM-DD HH:MM"/>
+
     </TableLayout>
+
 </LinearLayout>
     <Button
         android:layout_width="match_parent"
