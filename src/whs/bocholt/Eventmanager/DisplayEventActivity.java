@@ -15,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.content.Intent;
+import android.widget.RadioButton;
 import android.widget.TableRow;
 import android.widget.TextView;
 
@@ -39,6 +40,7 @@ import whs.bocholt.Eventmanager.services.JsonService;
 public class DisplayEventActivity extends ParentActivity{
 
     private String eventID;
+    private String userID;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,28 @@ public class DisplayEventActivity extends ParentActivity{
         // Get the message from the intent
         Intent intent = getIntent();
         eventID = intent.getStringExtra("EventID");
+        userID = intent.getStringExtra("UserID");
+
+        Button sendStatsuButton = (Button) findViewById(R.id.buttonSenden);
+
+        sendStatsuButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                RadioButton statusYes = (RadioButton) findViewById(R.id.statusYes);
+                RadioButton statusNo = (RadioButton) findViewById(R.id.statusNo);
+
+                String url = JSONConstants.URL_SIGN_IN.replaceAll("userid", userID).replaceAll("eventid", eventID);
+
+                if(statusYes.isChecked()){
+                    url = url + JSONConstants.INVITATION_STATUS_ACCEPT;
+                }
+                else if(statusNo.isChecked()){
+                    url = url + JSONConstants.INVITATiON_STATUS_DECLINED;
+                }
+                new SendStatusService().execute(url);
+            }
+        });
 
         new LoadEventService().execute(JSONConstants.URL_GET_DETAIL_EVENT_INFORMATION + eventID);
 
@@ -114,9 +138,48 @@ public class DisplayEventActivity extends ParentActivity{
             super.onPostExecute(aVoid);
             showEventDetailInformation(event);
         }
-
-
     }
 
+    class SendStatusService extends AsyncTask<String, Void, Void>{
+
+        JsonService jsonService;
+
+        SendStatusService() {
+            this.jsonService = new JsonService();
+        }
+
+        @Override
+        protected Void doInBackground(String... params) {
+            URL url = null;
+            try {
+                url = new URL(params[0]);
+                JSONObject jsonObject = jsonService.readJSONObjectFromURL(url);
+
+                if(!jsonService.hasError(jsonObject)){
+                    JSONObject dataObject = jsonObject.getJSONObject("data");
+                }
+                else {
+                    String errorMessage = jsonService.getErrorMessage(jsonObject);
+                    showErrorToast(errorMessage);
+                    System.err.println("There was an error during loading the event: " + eventID + "\n" +
+                                    jsonService.getErrorMessage(jsonObject)
+                    );
+                }
+            } catch (MalformedURLException e) {
+                System.err.println("Cannot create URL " + params[0]);
+            } catch (JSONException e) {
+                System.err.println("cannot read JSON!");
+            }
+
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            showErrorToast("Ihr Status wurde erfolgreich gespeichert");
+        }
+    }
 
 }

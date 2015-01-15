@@ -11,7 +11,7 @@ public class ParentActivity extends Activity{
 
 
     protected void showErrorToast(String errorMessage){
-//        Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
     }
 
 }

@@ -9,7 +9,9 @@ public class JSONConstants {
 
     public static final String URL_GET_INVITATIONS = "http://eventmanager.pythonanywhere.com/events/getInvitations?uid=";
     public static final String URL_GET_DETAIL_EVENT_INFORMATION = "http://eventmanager.pythonanywhere.com/events/getById?id=";
-    public static final String URL_SIGN_IN = "http://server/invitations/signin?eid=eventID&uid=userID&status=sid";
+    public static final String URL_SIGN_IN = "http://eventmanager.pythonanywhere.com/events/signin?eid=eventid&uid=userid&status=";
+
+    public static final String URL_NEW_EVENT = "http://eventmanager.pythonanywhere.com/events/create?aid=adminuserid&time=date&bz=name&Ort=ort";
 
     public static final String JSON_RESULT = "result";
     public static final String JSON_DATA = "data";

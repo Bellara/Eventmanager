@@ -34,6 +34,7 @@ public class EventListViewActivity extends ListActivity {
     ListView list;
 
     public User user;
+    public String userID;
 
 
     /**
@@ -44,7 +45,8 @@ public class EventListViewActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        String userID = getIntent().getStringExtra("user");
+
+        userID = getIntent().getStringExtra("user");
 
         new EventService(userID).execute(JSONConstants.URL_GET_INVITATIONS + userID);
     }
@@ -78,6 +80,7 @@ public class EventListViewActivity extends ListActivity {
                 Intent intent = new Intent(EventListViewActivity.this, DisplayEventActivity.class);
                 String eventID = invitations.get(position).event.eventID;
                 intent.putExtra("EventID", eventID);
+                intent.putExtra("UserID" , userID);
                 startActivity(intent);
             }
         });
@@ -106,6 +109,7 @@ public class EventListViewActivity extends ListActivity {
 
     public void openNew(){
         Intent intent = new Intent(this, NewEventActivity.class);
+        intent.putExtra("userID" , userID);
         startActivity(intent);
     }
 
