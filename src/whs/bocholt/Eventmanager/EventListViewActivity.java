@@ -155,7 +155,7 @@ public class EventListViewActivity extends ListActivity {
             }
 
             if(invitations.size() == 0){
-                showErrorToast("Sie haben leider keine Einladungen zu einem Event");
+//                showErrorToast("Sie haben leider keine Einladungen zu einem Event");
             }
             return invitations;
         }
